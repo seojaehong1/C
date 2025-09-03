@@ -1,0 +1,33 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Prepare build dir",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy", "Bypass",
+        "-Command",
+        "mkdir -Force \"${workspaceFolder}\\build\""
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "C Build (MinGW)",
+      "type": "shell",
+      "command": "gcc",
+      "args": [
+        "-g",
+        "${file}",
+        "-o",
+        "${workspaceFolder}\\build\\app.exe"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": ["$gcc"],
+      "dependsOrder": "sequence",
+      "dependsOn": ["Prepare build dir"]
+    }
+  ]
+}
